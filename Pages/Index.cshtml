@@ -1,0 +1,46 @@
+﻿@*@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+*@
+@page
+@model WhatTodo.Pages.Tasks.IndexModel
+@{
+}
+
+<br />
+<h2> What To Do List</h2>
+<a class="btn btn-primary btn-sm" href="/Tasks/Create"> New Task</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>TITLE</th>
+			<th>DETAILS</th>
+			<th>STATUS</th>
+			<th>DATE</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model.listClients){
+			<tr>
+				<td> @item.id</td>
+				<td> @item.title</td>
+				<td> @item.details</td>
+				<td>@item.status </td>
+				<td>@item.date </td>
+				<td> 
+					<a class="btn btn-primary btn-sm" href="/Tasks/Edit?id=@item.id">Edit</a>
+					<a class="btn btn-danger btn-sm" href="/Tasks/Delete?id=@item.id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

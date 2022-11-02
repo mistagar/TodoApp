@@ -1,0 +1,27 @@
+﻿@page
+@using System.Data.SqlClient;
+@model WhatTodo.Pages.Tasks.DeleteModel
+@{
+
+    string id = Request.Query["id"];
+    try
+    {
+        string connectionString = "Data Source=GARCODE;Initial Catalog=Tasks;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            string sql = "DELETE FROM Tasks WHERE Id=@id";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+
+    }
+    Response.Redirect("/Index");
+}
